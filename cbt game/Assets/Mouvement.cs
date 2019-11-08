@@ -9,6 +9,7 @@ public class Mouvement : MonoBehaviour
     Rigidbody rb;
     public bool grounded;
     public float maxVelocity;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class Mouvement : MonoBehaviour
         rb = this.gameObject.GetComponent<Rigidbody>();
         stats = this.gameObject.GetComponent<Stats>();
         grounded = true;
+        anim = this.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,6 +31,8 @@ public class Mouvement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A)&& rb.velocity.x >= -maxVelocity)
         {
+            player.transform.eulerAngles = new Vector3(0, 90, 0);
+            anim.SetBool("walking", true);
             rb.velocity += new Vector3(-1, 0, 0);
         }
         /*if(Input.GetKey(KeyCode.S))
@@ -37,7 +41,13 @@ public class Mouvement : MonoBehaviour
         }*/
         if(Input.GetKey(KeyCode.D)&& rb.velocity.x <= maxVelocity)
         {
+            player.transform.eulerAngles = new Vector3(0, -90, 0);
+            anim.SetBool("walking", true);
             rb.velocity += new Vector3(1, 0, 0);
+        }
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
+            anim.SetBool("walking", false);
         }
         if (Input.GetKey(KeyCode.J))
         {
