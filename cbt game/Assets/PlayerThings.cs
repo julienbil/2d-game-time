@@ -7,7 +7,7 @@ public class PlayerThings : MonoBehaviour
 {
     public Stats stats;
     public Transform hpT, manaT, xpT;
-    public TextMeshProUGUI hpText, manaText, xpText, lvlText;
+    public TextMeshProUGUI hpText, manaText, xpText, lvlText, skillText;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,5 +27,7 @@ public class PlayerThings : MonoBehaviour
         xpText.text = stats.xp + "/" + stats.maxXp;
 
         lvlText.text = stats.lvl.ToString();
+
+        skillText.text = "Skill Points: \n"+stats.skillPts;
     }
 }

@@ -24,7 +24,7 @@ public class Stats : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (xp >= maxXp)
         {
@@ -35,7 +35,7 @@ public class Stats : MonoBehaviour
         }
     }
 
-    void addLife()
+    public void addLife()
     {
         if (skillPts > 0)
         {
@@ -45,7 +45,7 @@ public class Stats : MonoBehaviour
             skillPts--;
         }
     }
-    void addStrength()
+    public void addStrength()
     {
         if (skillPts > 0)
         {
@@ -53,7 +53,7 @@ public class Stats : MonoBehaviour
             skillPts--;
         }
     }
-    void addIntelligence()
+    public void addIntelligence()
     {
         if (skillPts > 0)
         {
@@ -63,7 +63,7 @@ public class Stats : MonoBehaviour
             skillPts--;
         }
     }
-    void addEndurance()
+    public void addEndurance()
     {
         if (skillPts > 0)
         {
@@ -71,12 +71,27 @@ public class Stats : MonoBehaviour
             skillPts--;
         }
     }
-    void addAgility()
+    public void addAgility()
     {
         if (skillPts > 0)
         {
             agility++;
             skillPts--;
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            TakeDamage(collision.gameObject.GetComponent<Retard>().power);
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        hp -= damage;
+        if (hp < 0)
+            hp = 0;
     }
 }

@@ -7,6 +7,7 @@ public class Retard : MonoBehaviour
     public float maxVelocity;
     Rigidbody rb;
     Transform pTransform;
+    public int power;
     // Start is called before the first frame update
     void Start()
     {
