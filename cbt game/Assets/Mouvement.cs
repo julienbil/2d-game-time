@@ -8,8 +8,9 @@ public class Mouvement : MonoBehaviour
     Stats stats;
     Rigidbody rb;
     public bool grounded,dashing;
-    public float maxVelocity,gravity,jump,dashTimer,dashTime,dashSpeed,dashCDTimer,dashCD;
+    public float maxVelocity,gravity,jump,dashTimer,dashTime,dashSpeed,dashCDTimer,dashCD,airDivider;
     Animator anim;
+    public Sword sword;
 
     // Start is called before the first frame update
     void Start()
@@ -30,25 +31,43 @@ public class Mouvement : MonoBehaviour
             rb.velocity += new Vector3(0, jump, 0);
             grounded = false;
         }
-        if (Input.GetKey(KeyCode.A)&& rb.velocity.x >= -maxVelocity)
+        if (Input.GetKey(KeyCode.A))
         {
-            player.transform.eulerAngles = new Vector3(0, 90, 0);
-            anim.SetBool("walking", true);
-            rb.velocity += new Vector3(-1, 0, 0);
+            if(rb.velocity.x >= -maxVelocity)
+            {
+                player.transform.eulerAngles = new Vector3(0, 90, 0);
+                anim.SetBool("walking", true);
+                rb.velocity += new Vector3(-1, 0, 0);
+            }
             if (dashing)
-                rb.velocity = new Vector3(-maxVelocity * dashSpeed, rb.velocity.y, rb.velocity.z);
+            {
+                if (grounded)
+                    rb.velocity = new Vector3(-maxVelocity * dashSpeed, rb.velocity.y, rb.velocity.z);
+                else
+                    rb.velocity = new Vector3(-maxVelocity * dashSpeed/airDivider, rb.velocity.y, rb.velocity.z);
+            }
+
         }
         /*if(Input.GetKey(KeyCode.S))
         {
             rb.velocity += new Vector3(0, -1, 0);
         }*/
-        if(Input.GetKey(KeyCode.D)&& rb.velocity.x <= maxVelocity)
+        if(Input.GetKey(KeyCode.D))
         {
-            player.transform.eulerAngles = new Vector3(0, -90, 0);
-            anim.SetBool("walking", true);
-            rb.velocity += new Vector3(1, 0, 0);
-            if(dashing)
-                rb.velocity = new Vector3(maxVelocity * dashSpeed, rb.velocity.y, rb.velocity.z);
+            if (rb.velocity.x <= maxVelocity)
+            {
+                player.transform.eulerAngles = new Vector3(0, -90, 0);
+                anim.SetBool("walking", true);
+                rb.velocity += new Vector3(1, 0, 0);
+            }
+            if (dashing)
+            {
+                if(grounded)
+                    rb.velocity = new Vector3(maxVelocity * dashSpeed, rb.velocity.y, rb.velocity.z);
+                else
+                    rb.velocity = new Vector3(maxVelocity * dashSpeed/airDivider, rb.velocity.y, rb.velocity.z);
+            }
+
         }
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
@@ -67,6 +86,7 @@ public class Mouvement : MonoBehaviour
                 if (stats.hp < 0)
                     stats.hp = 0;
             }
+            sword.attackType = Attack.J;
         }
         if (Input.GetKey(KeyCode.K))
         {
@@ -79,6 +99,7 @@ public class Mouvement : MonoBehaviour
             if (stats.realMana >= 10)
             {
                 stats.realMana -= 10;
+                sword.attackType = Attack.K;
             }
         }
         if (Input.GetKey(KeyCode.L))
@@ -88,6 +109,7 @@ public class Mouvement : MonoBehaviour
             if (stats.realMana >= 30)
             {
                 stats.realMana -= 30;
+                sword.attackType = Attack.L;
             }
         }
         if (Input.GetKey(KeyCode.R))
