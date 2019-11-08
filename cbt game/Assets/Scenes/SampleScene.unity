@@ -2149,6 +2149,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: animeman
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 749cbefe237ccd04e8dec1f3b2202ac3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 749cbefe237ccd04e8dec1f3b2202ac3,
         type: 3}
       propertyPath: m_Controller
