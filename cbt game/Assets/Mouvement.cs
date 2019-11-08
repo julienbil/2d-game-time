@@ -8,7 +8,7 @@ public class Mouvement : MonoBehaviour
     Stats stats;
     Rigidbody rb;
     public bool grounded;
-    public float maxVelocity;
+    public float maxVelocity,gravity,jump;
     Animator anim;
 
     // Start is called before the first frame update
@@ -19,6 +19,7 @@ public class Mouvement : MonoBehaviour
         stats = this.gameObject.GetComponent<Stats>();
         grounded = true;
         anim = this.gameObject.GetComponent<Animator>();
+        Physics.gravity = new Vector3(0, -gravity, 0);
     }
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class Mouvement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space)&&grounded)
         {
-            rb.velocity += new Vector3(0, 10, 0);
+            rb.velocity += new Vector3(0, jump, 0);
             grounded = false;
         }
         if (Input.GetKey(KeyCode.A)&& rb.velocity.x >= -maxVelocity)
