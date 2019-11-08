@@ -29,13 +29,15 @@ public class OpenThing : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        mr.material = materialHover;
-        halo.enabled = true;
+        //mr.material = materialHover;
+        //halo.enabled = true;
+        mr.material.color = new Color32(200, 255, 255, 255);
     }
 
     private void OnMouseExit()
     {
-        mr.material = materialIdle;
-        halo.enabled = false;
+        //mr.material = materialIdle;
+        //halo.enabled = false;
+        mr.material.color = new Color32(200, 200, 200, 255);
     }
 }
