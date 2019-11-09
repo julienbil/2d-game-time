@@ -1,15 +1,12 @@
 fileFormatVersion: 2
-guid: 3e21a9f3d012808498bbcedff30b0216
+guid: 0e0e6214fd0335e4a845f4e43e38b541
 ModelImporter:
   serializedVersion: 26
-  internalIDToNameTable: []
-  externalObjects:
+  internalIDToNameTable:
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bricksanus
-    second: {fileID: 6108114698821067975, guid: 3e21a9f3d012808498bbcedff30b0216,
-      type: 3}
+      74: 6755702151989149167
+    second: Torus.001|Torus.001Action
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -93,7 +90,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

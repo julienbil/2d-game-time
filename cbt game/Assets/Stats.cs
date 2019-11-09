@@ -6,6 +6,7 @@ public class Stats : MonoBehaviour
 {
     public int life, strength, intelligence, endurance, agility,
         hp, maxHp, mana, maxMana, lvl, xp, maxXp, skillPts;
+    public float manaRegen, realMana;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class Stats : MonoBehaviour
         maxHp = life * 15;
         hp = maxHp;
         maxMana = intelligence * 10;
-        mana = maxMana;
+        realMana = maxMana;
     }
 
     // Update is called once per frame
@@ -32,6 +33,16 @@ public class Stats : MonoBehaviour
             xp = 0;
             skillPts++;
             maxXp = lvl * 2;
+        }
+        if (mana < maxMana)
+        {
+            realMana += (manaRegen * Time.deltaTime);
+            mana = (int)realMana;
+            if (realMana > maxMana)
+            {
+                realMana = maxMana;
+                mana = maxMana;
+            }
         }
     }
 
@@ -59,7 +70,7 @@ public class Stats : MonoBehaviour
         {
             intelligence++;
             maxMana = intelligence * 10;
-            mana = maxMana;
+            realMana = maxMana;
             skillPts--;
         }
     }
