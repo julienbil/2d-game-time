@@ -32,7 +32,7 @@ public class Mouvement : MonoBehaviour
             grounded = false;
             anim.SetBool("jumping", true);
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !attacking)
         {
             if(rb.velocity.x >= -maxVelocity)
             {
@@ -47,25 +47,20 @@ public class Mouvement : MonoBehaviour
                 else
                     rb.velocity = new Vector3(-maxVelocity * dashSpeed/airDivider, rb.velocity.y, rb.velocity.z);
             }
-
         }
-
         if (Input.GetKey(KeyCode.S) && grounded && !attacking)
         {
             rb.velocity += new Vector3(0, -1, 0);
             anim.SetBool("crouching", true);
         }
-
         if (!Input.GetKey(KeyCode.S) || !grounded)
         {
             anim.SetBool("crouching", false);
         }
-       
         if (grounded)
         {
             anim.SetBool("jumping", false);
         }
-
         if(Input.GetKey(KeyCode.D) && !attacking)
         {
             if (rb.velocity.x <= maxVelocity)
@@ -81,7 +76,6 @@ public class Mouvement : MonoBehaviour
                 else
                     rb.velocity = new Vector3(maxVelocity * dashSpeed/airDivider, rb.velocity.y, rb.velocity.z);
             }
-
         }
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
@@ -95,45 +89,22 @@ public class Mouvement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.J) && !attacking && grounded)
         {
-            if (stats.hp > 0) {
-                stats.hp -= 10;
-                if (stats.hp < 0)
-                    stats.hp = 0;
-            }
-            
-            IEnumerator Attacking()
-            {
-                attacking = true;
-                anim.SetBool("attacking", true);
-                yield return new WaitForSeconds(0.6f);
-                attacking = false;
-                anim.SetBool("attacking", false);
-            }
-            StartCoroutine(Attacking());
-            // sword.attackType = Attack.J;
+            StartCoroutine(Attacking(Attack.J));
         }
         if (Input.GetKey(KeyCode.K))
         {
-            if (stats.mana > 0)
-            {
-                stats.mana -= 10;
-                if (stats.mana < 0)
-                    stats.mana = 0;
-            }
             if (stats.realMana >= 10)
             {
                 stats.realMana -= 10;
-                sword.attackType = Attack.K;
+                StartCoroutine(Attacking(Attack.K));
             }
         }
         if (Input.GetKey(KeyCode.L))
         {
-            stats.xp += 1;
-
             if (stats.realMana >= 30)
             {
                 stats.realMana -= 30;
-                sword.attackType = Attack.L;
+                StartCoroutine(Attacking(Attack.L));
             }
         }
         if (Input.GetKey(KeyCode.R))
@@ -141,9 +112,7 @@ public class Mouvement : MonoBehaviour
             stats.hp = stats.maxHp;
             stats.mana = stats.maxMana;
             stats.xp = stats.maxXp;
-
         }
-
         if (dashing)
         {
             dashTimer -= 1 * Time.deltaTime;
@@ -158,5 +127,16 @@ public class Mouvement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
             grounded = true;
+    }
+
+    IEnumerator Attacking(Attack attackType)
+    {
+        attacking = true;
+        anim.SetBool("attacking", true);
+        sword.attackType = attackType;
+        yield return new WaitForSeconds(0.7f);
+        attacking = false;
+        anim.SetBool("attacking", false);
+        sword.attackType = Attack.Null;
     }
 }

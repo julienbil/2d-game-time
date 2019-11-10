@@ -7,6 +7,7 @@ public class Stats : MonoBehaviour
     public int life, strength, intelligence, endurance, agility,
         hp, maxHp, mana, maxMana, lvl, xp, maxXp, skillPts;
     public float manaRegen, realMana;
+    public GameObject modelHolder;
     // Start is called before the first frame update
     void Start()
     {
@@ -104,5 +105,22 @@ public class Stats : MonoBehaviour
         hp -= damage;
         if (hp < 0)
             hp = 0;
+        StartCoroutine(Invincible());
+        IEnumerator Invincible()
+        {
+            Physics.IgnoreLayerCollision(8, 9, true);
+            modelHolder.SetActive(false);
+            yield return new WaitForSeconds(0.15f);
+            modelHolder.SetActive(true);
+            yield return new WaitForSeconds(0.15f);
+            modelHolder.SetActive(false);
+            yield return new WaitForSeconds(0.15f);
+            modelHolder.SetActive(true);
+            yield return new WaitForSeconds(0.15f);
+            modelHolder.SetActive(false);
+            yield return new WaitForSeconds(0.15f);
+            modelHolder.SetActive(true);
+            Physics.IgnoreLayerCollision(8, 9, false);
+        }
     }
 }
