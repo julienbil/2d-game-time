@@ -6,7 +6,7 @@ public class Retard : MonoBehaviour
 {
     public float maxVelocity;
     Rigidbody rb;
-    Transform pTransform;
+    protected Transform pTransform;
     public Transform hpBar;
     public int power;
     Mouvement playerMV;
