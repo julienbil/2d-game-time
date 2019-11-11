@@ -12,7 +12,7 @@ public class Retard : MonoBehaviour
     Mouvement playerMV;
     Stats playerStats;
     public float realHp;
-    public int hp,maxHp;
+    public int hp,maxHp,lvl;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +34,7 @@ public class Retard : MonoBehaviour
 
         if (Input.GetKey(KeyCode.T))
         {
-            TakeDamage(1, 1);
+            TakeDamage(1, 1, 1);
         }
 
     }
@@ -51,13 +51,17 @@ public class Retard : MonoBehaviour
             rb.velocity += new Vector3(-1, 0, 0);
     }
 
-    public void TakeDamage(int strength, float ratio)
+    public void TakeDamage(int strength, float ratio, int lvlP)
     {
-        realHp -= strength * ratio;
-        if (realHp < 0)
-            Death();
-        hp = (int)realHp;
-        hpBar.localScale = new Vector3(1.5f*((float)hp/(float)maxHp),0.15f,0.00000001f);
+        if (lvl - lvlP <= 5)
+        {
+            realHp -= strength * ratio * (1 - (lvl - lvlP) / 5f);
+            if (realHp < 0)
+                Death();
+            hp = (int)realHp;
+            hpBar.localScale = new Vector3(1.5f*((float)hp/(float)maxHp),0.15f,0.00000001f);
+        }
+        
     }
 
     void Death()

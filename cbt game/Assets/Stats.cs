@@ -6,7 +6,7 @@ public class Stats : MonoBehaviour
 {
     public int life, strength, intelligence, endurance, agility,
         hp, maxHp, mana, maxMana, lvl, xp, maxXp, skillPts;
-    public float manaRegen, realMana;
+    public float manaRegen, realMana, realHp;
     public GameObject modelHolder;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,8 @@ public class Stats : MonoBehaviour
         endurance = 5;
         agility = 5;
         maxHp = life * 15;
-        hp = maxHp;
+        realHp = maxHp;
+        hp = (int)realHp;
         maxMana = intelligence * 10;
         realMana = maxMana;
     }
@@ -53,7 +54,6 @@ public class Stats : MonoBehaviour
         {
             life++;
             maxHp = life * 15;
-            hp = maxHp;
             skillPts--;
         }
     }
@@ -71,7 +71,6 @@ public class Stats : MonoBehaviour
         {
             intelligence++;
             maxMana = intelligence * 10;
-            realMana = maxMana;
             skillPts--;
         }
     }
@@ -96,15 +95,19 @@ public class Stats : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            TakeDamage(collision.gameObject.GetComponent<Retard>().power);
+            TakeDamage(collision.gameObject.GetComponent<Retard>().power, collision.gameObject.GetComponent<Retard>().lvl);
         }
     }
 
-    void TakeDamage(int damage)
+    void TakeDamage(int damage, int lvlE)
     {
-        hp -= damage;
-        if (hp < 0)
-            hp = 0;
+        if(lvlE - lvl >= -5)
+        {
+            realHp -= damage*(1-endurance/100f)*(1+(lvlE-lvl)/5f);
+            if (realHp < 0)
+                realHp = 0;
+            hp = (int)realHp;
+        }
         StartCoroutine(Invincible());
         IEnumerator Invincible()
         {

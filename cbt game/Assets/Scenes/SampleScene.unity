@@ -757,7 +757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &123233034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -792,6 +792,7 @@ MonoBehaviour:
   realHp: 0
   hp: 0
   maxHp: 30
+  lvl: 5
 --- !u!65 &123233036
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3518,6 +3519,7 @@ MonoBehaviour:
   realHp: 0
   hp: 0
   maxHp: 30
+  lvl: 1
 --- !u!65 &679799598
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8266,7 +8268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1606940276
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8301,6 +8303,7 @@ MonoBehaviour:
   realHp: 0
   hp: 0
   maxHp: 30
+  lvl: 5
 --- !u!65 &1606940278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9608,7 +9611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1975348469
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9643,6 +9646,7 @@ MonoBehaviour:
   realHp: 0
   hp: 0
   maxHp: 30
+  lvl: 5
 --- !u!65 &1975348471
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10196,6 +10200,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: animeman
       objectReference: {fileID: 0}
+    - target: {fileID: 368574324315148224, guid: ec913cf1721ecf040a5cebba443152cc,
+        type: 3}
+      propertyPath: modelHolder
+      value: 
+      objectReference: {fileID: 1112346311}
     - target: {fileID: 4640894182039829466, guid: ec913cf1721ecf040a5cebba443152cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10251,11 +10260,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 368574324315148224, guid: ec913cf1721ecf040a5cebba443152cc,
-        type: 3}
-      propertyPath: modelHolder
-      value: 
-      objectReference: {fileID: 1112346311}
     - target: {fileID: 368574324205518735, guid: ec913cf1721ecf040a5cebba443152cc,
         type: 3}
       propertyPath: m_AABB.m_Extent.x

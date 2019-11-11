@@ -31,11 +31,11 @@ public class Sword : MonoBehaviour
                 else
                     enemyRB.velocity = new Vector3(15, 4, enemyRB.velocity.z);
                 if (attackType == Attack.J)
-                    other.gameObject.GetComponent<Retard>().TakeDamage(stats.strength,1f);
+                    other.gameObject.GetComponent<Retard>().TakeDamage(stats.strength,1f,stats.lvl);
                 else if (attackType == Attack.K)
-                    other.gameObject.GetComponent<Retard>().TakeDamage(stats.strength, 1.5f);
+                    other.gameObject.GetComponent<Retard>().TakeDamage(stats.strength, 1.5f, stats.lvl);
                 else if (attackType == Attack.L)
-                    other.gameObject.GetComponent<Retard>().TakeDamage(stats.strength, 2.5f);
+                    other.gameObject.GetComponent<Retard>().TakeDamage(stats.strength, 2.5f, stats.lvl);
             }
         }
     }
