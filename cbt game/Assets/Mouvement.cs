@@ -87,7 +87,7 @@ public class Mouvement : MonoBehaviour
             dashCDTimer = dashCD;
             dashTimer = dashTime;
         }
-        if (Input.GetKey(KeyCode.J) && !attacking && grounded)
+        if (Input.GetKeyDown(KeyCode.J) && !attacking && grounded)
         {
             StartCoroutine(Attacking(Attack.J));
         }
