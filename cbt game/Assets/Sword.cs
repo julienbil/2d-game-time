@@ -21,9 +21,9 @@ public class Sword : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (attackType != Attack.Null && other.gameObject.tag == "Enemy")
+        if (attackType != Attack.Null)
         {
-            if (attackType != Attack.Null)
+            if (other.gameObject.tag == "Enemy")
             {
                 Rigidbody enemyRB = other.gameObject.GetComponent<Rigidbody>();
                 if (playerT.eulerAngles.y == 90)
@@ -36,6 +36,10 @@ public class Sword : MonoBehaviour
                     other.gameObject.GetComponent<Retard>().TakeDamage(stats.strength, 1.5f, stats.lvl);
                 else if (attackType == Attack.L)
                     other.gameObject.GetComponent<Retard>().TakeDamage(stats.strength, 2.5f, stats.lvl);
+            }
+            if (other.tag == "Projectile")
+            {
+                Destroy(other.gameObject);
             }
         }
     }
