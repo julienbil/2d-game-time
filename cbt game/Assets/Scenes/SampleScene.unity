@@ -3157,7 +3157,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 19.95
+  m_fontSize: 19.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3698,7 +3698,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701539039}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 484afffe0dd2d034da964707a7b17db6, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4162,7 +4162,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816509618}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 24edc3d0423dcf241872b9aa204ef7a8, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -8260,7 +8260,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579695167}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 24edc3d0423dcf241872b9aa204ef7a8, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -9311,6 +9311,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734772909}
   m_CullTransparentMesh: 0
+--- !u!1 &1754231745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4915445596922844520, guid: ec913cf1721ecf040a5cebba443152cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 368574325022779864}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1754231751
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754231745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000134, y: 1.2086611, z: 2.0871167}
+  m_Center: {x: -0.000014918362, y: 0.42602703, z: 0.043557562}
 --- !u!1 &1821243527
 GameObject:
   m_ObjectHideFlags: 0
@@ -10484,6 +10503,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AABB.m_Extent.z
       value: 0.008854751
+      objectReference: {fileID: 0}
+    - target: {fileID: 368574325723254856, guid: ec913cf1721ecf040a5cebba443152cc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec913cf1721ecf040a5cebba443152cc, type: 3}

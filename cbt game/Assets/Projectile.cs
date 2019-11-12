@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public int direction;
     public float speed;
+    public int seconds;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     IEnumerator SelfDestruct()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(seconds);
         Destroy(gameObject);
     }
 

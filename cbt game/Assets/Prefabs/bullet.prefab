@@ -107,4 +107,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: -1
-  speed: 8
+  speed: 10
+  seconds: 5
