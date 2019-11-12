@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public int direction;
     public float speed;
-    public int seconds;
+    public int seconds, lvl, damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +24,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<Stats>().hp -= 10;
-            other.GetComponent<Stats>().realHp -= 10;
+            other.GetComponent<Stats>().TakeDamage(damage, lvl);
             Destroy(gameObject);
         }
     }

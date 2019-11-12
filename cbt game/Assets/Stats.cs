@@ -7,7 +7,7 @@ public class Stats : MonoBehaviour
     public int life, strength, intelligence, endurance, agility,
         hp, maxHp, mana, maxMana, lvl, xp, maxXp, skillPts;
     public float manaRegen, realMana, realHp;
-    public GameObject modelHolder;
+    public GameObject modelHolder,deathPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -99,13 +99,13 @@ public class Stats : MonoBehaviour
         }
     }
 
-    void TakeDamage(int damage, int lvlE)
+    public void TakeDamage(int damage, int lvlE)
     {
         if(lvlE - lvl >= -5)
         {
             realHp -= damage*(1-endurance/100f)*(1+(lvlE-lvl)/5f);
-            if (realHp < 0)
-                realHp = 0;
+            if (realHp <= 0)
+                Death();
             hp = (int)realHp;
         }
         StartCoroutine(Invincible());
@@ -125,5 +125,24 @@ public class Stats : MonoBehaviour
             modelHolder.SetActive(true);
             Physics.IgnoreLayerCollision(8, 9, false);
         }
+    }
+
+    void Death()
+    {
+        realHp = 0;
+        hp = (int)realHp;
+        deathPanel.SetActive(true);
+        gameObject.SetActive(false);
+    }
+
+    public void Respawn()
+    {
+        realHp = maxHp;
+        hp = (int)realHp;
+        realMana = maxMana;
+        mana = (int)realMana;
+        modelHolder.SetActive(true);
+        transform.position = new Vector3(0, 3, 0);
+        gameObject.SetActive(true);
     }
 }

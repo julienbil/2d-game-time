@@ -7,7 +7,7 @@ public class Mouvement : MonoBehaviour
     GameObject player;
     Stats stats;
     Rigidbody rb;
-    public bool grounded,dashing,attacking;
+    public bool grounded,dashing,attacking,attackCD;
     public float maxVelocity,gravity,jump,dashTimer,dashTime,dashSpeed,dashCDTimer,dashCD,airDivider;
     Animator anim;
     public Sword sword;
@@ -87,11 +87,11 @@ public class Mouvement : MonoBehaviour
             dashCDTimer = dashCD;
             dashTimer = dashTime;
         }
-        if (Input.GetKeyDown(KeyCode.J) && !attacking && grounded)
+        if (Input.GetKeyDown(KeyCode.J) && grounded && !attackCD)
         {
             StartCoroutine(Attacking(Attack.J));
         }
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.K) && !attackCD)
         {
             if (stats.realMana >= 10)
             {
@@ -99,7 +99,7 @@ public class Mouvement : MonoBehaviour
                 StartCoroutine(Attacking(Attack.K));
             }
         }
-        if (Input.GetKey(KeyCode.L))
+        if (Input.GetKey(KeyCode.L) && !attackCD)
         {
             if (stats.realMana >= 30)
             {
@@ -131,6 +131,7 @@ public class Mouvement : MonoBehaviour
 
     IEnumerator Attacking(Attack attackType)
     {
+        attackCD = true;
         attacking = true;
         anim.SetBool("attacking", true);
         sword.attackType = attackType;
@@ -138,5 +139,7 @@ public class Mouvement : MonoBehaviour
         attacking = false;
         anim.SetBool("attacking", false);
         sword.attackType = Attack.Null;
+        yield return new WaitForSeconds(0.3f);
+        attackCD = false;
     }
 }

@@ -56,7 +56,7 @@ public class Retard : MonoBehaviour
         if (lvl - lvlP <= 5)
         {
             realHp -= strength * ratio * (1 - (lvl - lvlP) / 5f);
-            if (realHp < 0)
+            if (realHp <= 0)
                 Death();
             hp = (int)realHp;
             hpBar.localScale = new Vector3(1.5f*((float)hp/(float)maxHp),0.15f,0.00000001f);

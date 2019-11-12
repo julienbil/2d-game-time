@@ -24,6 +24,8 @@ public class RangedRetard : Retard
     {
         Projectile bullet = Projectile.GetComponent<Projectile>();
         bullet.direction = i;
+        bullet.lvl = lvl;
+        bullet.damage = power;
         return bullet;
     }
 
@@ -39,14 +41,10 @@ public class RangedRetard : Retard
     void ShootRight()
     {
         StartCoroutine(Shoot(1));
-        Debug.Log("I shoot to the right");
     }
 
     void ShootLeft()
     {
-
         StartCoroutine(Shoot(-1));
-        Debug.Log("I shoot to the left");
-
     }
 }
